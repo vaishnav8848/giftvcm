@@ -1,0 +1,110 @@
+:root {
+    --gold: #d4af37;
+    --gold-grad: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+    --wine-dark: #1a0505;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+    background: radial-gradient(circle at center, #2b0202, #000);
+    color: #fffdf5;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    overflow: hidden; /* Prevents scroll on envelope page */
+}
+
+.hidden { display: none !important; }
+
+/* FONTS & TEXT */
+.font-cinzel { font-family: 'Cinzel Decorative', serif; }
+.font-parisienne { font-family: 'Parisienne', cursive; font-size: 1.8rem; }
+.font-playfair { font-family: 'Playfair Display', serif; }
+.gold-text { background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }
+
+/* --- 1. ENVELOPE STAGE --- */
+#envelope-stage { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.luxury-envelope {
+    width: 280px; height: 180px; background: var(--wine-dark);
+    position: relative; border: 1px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8); cursor: pointer; transition: 0.8s;
+}
+.luxury-envelope.open { transform: translateY(100px) scale(0); opacity: 0; }
+.flap {
+    position: absolute; top: 0; width: 0; height: 0;
+    border-left: 140px solid transparent; border-right: 140px solid transparent;
+    border-top: 100px solid var(--gold); transition: 0.5s; transform-origin: top; z-index: 2;
+}
+.luxury-envelope.open .flap { transform: rotateX(180deg); }
+.wax-seal {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 50px; height: 50px; background: #8b0000; border-radius: 50%;
+    color: gold; text-align: center; line-height: 50px; font-family: 'Cinzel Decorative';
+    box-shadow: 0 0 10px black; z-index: 3;
+}
+
+/* --- 2. GLASS LOGIN --- */
+.glass-panel {
+    width: 85%; max-width: 350px; margin: 15vh auto;
+    background: var(--glass); backdrop-filter: blur(15px);
+    border: 1px solid rgba(212, 175, 55, 0.3); padding: 40px 20px;
+    border-radius: 20px; text-align: center;
+}
+.crown-icon { font-size: 2rem; color: var(--gold); margin-bottom: 10px; }
+#password-input {
+    width: 100%; background: transparent; border: none; border-bottom: 2px solid #555;
+    color: white; text-align: center; font-size: 1.2rem; padding: 10px; margin: 20px 0;
+    letter-spacing: 3px; outline: none; transition: 0.3s;
+}
+#password-input:focus { border-bottom: 2px solid var(--gold); }
+.royal-btn {
+    background: var(--gold-grad); border: none; color: #2b0202; padding: 12px 35px;
+    font-family: 'Cinzel Decorative'; font-weight: bold; border-radius: 30px; cursor: pointer;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); margin-top: 20px;
+}
+
+/* --- 3. LUXURY DOCK --- */
+.luxury-dock {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 25px; padding: 15px 30px;
+    background: rgba(0,0,0,0.8); border: 1px solid var(--gold); border-radius: 50px;
+    z-index: 1000; box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+.dock-btn { color: var(--gold); font-size: 1.5rem; cursor: pointer; transition: 0.3s; }
+.dock-btn:hover { transform: scale(1.2); color: #fff; }
+
+/* --- 4. SCRATCH PAGE --- */
+.page { height: 100vh; overflow-y: auto; padding-bottom: 100px; padding-top: 40px; }
+.scratch-frame {
+    width: 280px; height: 380px; margin: 20px auto;
+    border: 2px solid var(--gold); padding: 5px; box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+.scratch-inner { position: relative; width: 100%; height: 100%; }
+#hidden-photo { width: 100%; height: 100%; object-fit: cover; }
+canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; touch-action: none; }
+
+/* --- 5. GALLERY --- */
+.gallery-scroll { display: flex; flex-direction: column; align-items: center; gap: 60px; padding: 20px; }
+.polaroid { background: #fff; padding: 10px 10px 30px 10px; width: 80vw; max-width: 300px; color: #000; text-align: center; box-shadow: 0 10px 20px black; }
+.photo-frame img { width: 100%; display: block; filter: sepia(20%); }
+.tilt-left { transform: rotate(-3deg); }
+.tilt-right { transform: rotate(3deg); }
+.tilt-center { transform: rotate(0deg) scale(1.05); z-index: 5; }
+
+/* --- 6. SCROLL LETTER --- */
+.scroll-body { padding: 20px; display: flex; justify-content: center; }
+.scroll-paper {
+    background: #fdf5e6; color: #2e1a05; width: 100%; max-width: 350px;
+    padding: 50px 30px; border-radius: 5px; border-top: 20px solid #deb887; border-bottom: 20px solid #deb887;
+    box-shadow: 0 10px 40px black; min-height: 60vh;
+}
+
+/* PARTICLES */
+#particle-container { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
+.falling-item { position: absolute; animation: fall linear forwards; font-size: 20px; }
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Radhu | A Royal Memoir</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Parisienne&family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="particle-container"></div>
+
+    <audio id="bgm-audio" loop><source src="bgm.mp3" type="audio/mpeg"></audio>
+    <audio id="fav-audio"><source src="fav.mp3" type="audio/mpeg"></audio>
+
+    <div id="envelope-stage">
+        <div class="luxury-envelope" id="envelope-btn">
+            <div class="flap"></div>
+            <div class="pocket"></div>
+            <div class="wax-seal">R</div>
+        </div>
+        <p class="instruction-text font-cinzel">Tap to Open</p>
+    </div>
+
+    <section id="login-screen" class="hidden">
+        <div class="glass-panel">
+            <div class="crown-icon"><i class="fas fa-crown"></i></div>
+            <h1 class="font-cinzel gold-text">Identity</h1>
+            <p class="font-playfair italic">"Who holds the key?"</p>
+            
+            <div class="input-line-wrapper">
+                <input type="password" id="password-input" placeholder="HER NAME">
+                <div class="active-line"></div>
+            </div>
+            
+            <button id="enter-btn" class="royal-btn">Enter Paradise</button>
+        </div>
+    </section>
+
+    <div id="main-content" class="hidden">
+        
+        <div class="luxury-dock">
+            <div class="dock-btn" onclick="triggerEffect('chocolate')" title="Sweetness">
+                <i class="fas fa-cookie-bite"></i>
+            </div>
+            <div class="dock-btn" onclick="toggleMusic()" title="Play Her Song">
+                <i class="fas fa-music" id="music-icon"></i>
+            </div>
+            <div class="dock-btn" onclick="triggerEffect('flower')" title="Flowers">
+                <i class="fas fa-spa"></i>
+            </div>
+        </div>
+
+        <section id="step-reveal" class="page">
+            <h2 class="font-parisienne gold-text header-text">The First Glimpse</h2>
+            <div class="scratch-frame">
+                <div class="scratch-inner">
+                    <img src="photo1.jpg" id="hidden-photo">
+                    <canvas id="scratch-canvas"></canvas>
+                </div>
+            </div>
+            <p class="font-montserrat small-text">Brush away the gold...</p>
+        </section>
+
+        <section id="step-gallery" class="page hidden">
+            <h2 class="font-cinzel gold-text header-text">The Eras of You</h2>
+            <div class="gallery-scroll">
+                <div class="polaroid tilt-left">
+                    <div class="photo-frame"><img src="photo2.jpg"></div>
+                    <span class="font-parisienne">Innocence</span>
+                </div>
+                <div class="polaroid tilt-right">
+                    <div class="photo-frame"><img src="photo3.jpg"></div>
+                    <span class="font-parisienne">Radiance</span>
+                </div>
+                <div class="polaroid tilt-center">
+                    <div class="photo-frame"><img src="photo4.jpg"></div>
+                    <span class="font-parisienne">Magnificence</span>
+                </div>
+            </div>
+            <button class="royal-btn next-btn" onclick="goToLetter()">Read My Heart</button>
+        </section>
+
+        <section id="step-letter" class="page hidden">
+            <div class="scroll-body">
+                <div class="scroll-paper">
+                    <div id="typewriter-area" class="font-playfair"></div>
+                    <div id="signature" class="hidden font-parisienne">Forever Yours,<br> [Your Name]</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
